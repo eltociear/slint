@@ -20,6 +20,8 @@ All notable changes to this project are documented in this file.
  - Image: Added `ImageFit.preserve`
  - Image: Added `horizontal-` and `vertical-alignment`
  - Image: Added support for 9 slice scaling
+ - Palette: Added `dark-color-scheme` in-out property for accessing the
+   style's color scheme.
 
 ### Widgets
 
