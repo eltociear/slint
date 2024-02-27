@@ -41,6 +41,7 @@ pub struct NativePalette {
     pub selection_background: Property<Brush>,
     pub selection_foreground: Property<Brush>,
     pub border: Property<Brush>,
+    pub dark_color_scheme: Property<bool>, // This is a no-op as Qt doesn't allow changing the palette yet.
     pub style_change_listener: core::cell::Cell<*const u8>,
 }
 
@@ -64,6 +65,7 @@ impl NativePalette {
             border: Default::default(),
             selection_background: Default::default(),
             selection_foreground: Default::default(),
+            dark_color_scheme: Default::default(),
             style_change_listener: core::cell::Cell::new(core::ptr::null()),
         })
     }
