@@ -41,7 +41,7 @@ pub struct NativePalette {
     pub selection_background: Property<Brush>,
     pub selection_foreground: Property<Brush>,
     pub border: Property<Brush>,
-    pub dark_color_scheme: Property<bool>, // This is a no-op as Qt doesn't allow changing the palette yet.
+    pub dark_color_scheme: Property<bool>,
     pub style_change_listener: core::cell::Cell<*const u8>,
 }
 
@@ -154,6 +154,11 @@ impl NativePalette {
         });
         let selection_foreground = Color::from_argb_encoded(selection_foreground);
         self.selection_foreground.set(Brush::from(selection_foreground));
+
+        self.dark_color_scheme.set(
+            (background.red() as u32 + background.green() as u32 + background.blue() as u32) / 3
+                < 128,
+        );
 
         if self.style_change_listener.get().is_null() {
             self.style_change_listener.set(cpp!(unsafe [self as "void*"] -> *const u8 as "void*"{
